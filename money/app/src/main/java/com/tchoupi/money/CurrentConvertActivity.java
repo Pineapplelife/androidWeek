@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,11 +23,12 @@ public class CurrentConvertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_convert_activity);
 
-        Intent currentCurrency = getIntent();
-        currencyRate = currentCurrency.getDoubleExtra("currencyRate", 0);
-        euroRate = currentCurrency.getDoubleExtra("euroRate", 0);
-        currencyLabel = currentCurrency.getStringExtra("currencyLabel");
-        flags[1] = currentCurrency.getIntExtra("flag", R.drawable.france_flag);
+        Intent currentIntent = getIntent();
+        Currency currentCurrency = currentIntent.getParcelableExtra("currency");
+        flags[1] = currentCurrency.getFlag();
+        currencyRate = currentCurrency.getRate();
+        currencyLabel = currentCurrency.getSymbol();
+        euroRate = currentCurrency.getEuroRate();
 
         final Button convertButton = findViewById(R.id.convertButton);
         final TextView amountEditText = findViewById(R.id.amountEditText);
@@ -83,7 +83,7 @@ public class CurrentConvertActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CurrentConvertActivity.this, ChooseConvertActivity.class);
+                Intent intent = new Intent(CurrentConvertActivity.this, CurrencyListActivity.class);
                 startActivity(intent);
             }
         });
