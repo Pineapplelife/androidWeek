@@ -7,14 +7,23 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/flagImageView"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
+        android:id="@+id/flagImageView1"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/flagImageView2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/flagImageView2"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/flag_usa" />
+        app:layout_constraintStart_toEndOf="@+id/flagImageView1"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/convertButton"
@@ -28,10 +37,9 @@
         app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
 
     <TextView
-        android:id="@+id/labelTextView"
+        android:id="@+id/deviseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="€"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/amountEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,8 +54,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/convertButton"
-        app:layout_constraintEnd_toEndOf="@+id/flagImageView"
-        app:layout_constraintStart_toStartOf="@+id/flagImageView"
+        app:layout_constraintEnd_toEndOf="@+id/flagImageView1"
+        app:layout_constraintStart_toStartOf="@+id/flagImageView1"
         app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
 
     <TextView
@@ -65,23 +73,55 @@
         android:id="@+id/amountEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/labelTextView"
+        app:layout_constraintEnd_toStartOf="@+id/deviseTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flagImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/flagImageView1" />
 
     <Button
         android:id="@+id/changeConversionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Euro To Dollar"
+        android:text="Switch currency"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/convertButton"
         app:layout_constraintStart_toStartOf="@+id/convertButton"
         app:layout_constraintTop_toBottomOf="@+id/convertButton" />
+
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="About"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/arrowTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="=>"
+        app:layout_constraintBottom_toBottomOf="@+id/flagImageView1"
+        app:layout_constraintEnd_toStartOf="@+id/flagImageView2"
+        app:layout_constraintStart_toEndOf="@+id/flagImageView1"
+        app:layout_constraintTop_toTopOf="@+id/flagImageView1" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="Change currency"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
