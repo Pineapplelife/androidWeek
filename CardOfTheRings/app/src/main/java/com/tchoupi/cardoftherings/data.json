@@ -1,0 +1,176 @@
+[
+  {
+    "image": "gandalf",
+    "difficulty": "facile",
+    "question": "Qui est ce personnage ?",
+    "response": "Gandalf",
+    "answers": [
+      "Albus Dumbledore",
+      "Saroumane",
+      "Gandalf",
+      "La réponse D"
+    ]
+  },
+  {
+    "image": "bombadil",
+    "difficulty": "difficile",
+    "question": "Qui est ce personnage ?",
+    "response": "Tom Bombadil",
+    "answers": [
+      "Tom Bombadil",
+      "Le Père Magotte",
+      "Bandobras Touque"
+    ]
+  },
+  {
+    "image": "forochel",
+    "difficulty": "difficile",
+    "question": "Où se situe la baie de Forochel ?",
+    "response": "Au Nord de l'Evendim",
+    "answers": [
+      "Au Nord de l'Evendim",
+      "Au sud de Bree",
+      "Au Nord du Mordor",
+      "Au Pied Des Montagnes Grises"
+    ]
+  },
+  {
+    "image": "smeagol",
+    "difficulty": "facile",
+    "question": "Quel est le vrai prénom de Gollum ?",
+    "response": "Sméagol",
+    "answers": [
+      "Sméagol",
+      "Déagol",
+      "L'orc Pale"
+    ]
+  },
+  {
+    "image": "orthanc",
+    "difficulty": "moyen",
+    "question": "Où se trouve la tour d'Orthanc, où réside Saroumane ?",
+    "response": "Isengard",
+    "answers": [
+      "Minas Tirith",
+      "Le Gouffre de Helm",
+      "Isengard",
+      "Minas Morgul"
+    ]
+  },
+  {
+    "image": "beorn",
+    "difficulty": "moyen",
+    "question": "Quel est la particularité de Beorn ?",
+    "response": "C'est un changeur de peau",
+    "answers": [
+      "Il change le plomb en or",
+      "C'est un changeur de peau",
+      "Il parle aux animaux",
+      "Il a plus de 1000 ans"
+    ]
+  },
+  {
+    "image": "mont_venteux",
+    "difficulty": "moyen",
+    "question": "Dans quelle région se situe le Mont Venteux ?",
+    "response": "Les Terres Solitaires",
+    "answers": [
+      "Les Terres Solitaires",
+      "La Moria",
+      "Dans les Monts Brumeux",
+      "La trouée des Trolls"
+    ]
+  },
+  {
+    "image": "annuminas",
+    "difficulty": "difficile",
+    "question": "Quelle ancienne cité est au bord du lac Nenuial en Evendim ?",
+    "response": "Annuminas",
+    "answers": [
+      "Annuminas",
+      "Fornost",
+      "Carn Dum",
+      "Ost Forod"
+    ]
+  },
+  {
+    "image": "isildur",
+    "difficulty": "facile",
+    "question": "De qui Aragorn est l'héritié ?",
+    "response": "Isildur",
+    "answers": [
+      "Isildur",
+      "Elrond",
+      "Theoden",
+      "Denethor"
+    ]
+  },
+  {
+    "image": "arwen",
+    "difficulty": "facile",
+    "question": "Comment se nomme la fille d'Elrond ?",
+    "response": "Arwen",
+    "answers": [
+      "Arwen",
+      "Eowyn",
+      "Galadriel"
+    ]
+  },
+  {
+    "image": "huorn",
+    "difficulty": "difficile",
+    "question": "Comment se nomme les Ents retourné à l'état sauvage ?",
+    "response": "Les Huorns",
+    "answers": [
+      "Les Huorns",
+      "Las Onodrim",
+      "Les Enyd",
+      "Les Ainurs"
+    ]
+  },
+  {
+    "image": "ent",
+    "difficulty": "moyen",
+    "question": "Comment se nomme l'Ent gardien dans la foret de Fangorn ?",
+    "response": "Sylvebarbe",
+    "answers": [
+      "Sylvebarbe",
+      "Vifsorbier",
+      "Forn"
+    ]
+  },
+  {
+    "image": "fangorn",
+    "difficulty": "facile",
+    "question": "A coté de quelle cité se trouve la foret de Fangorn ?",
+    "response": "Isengard",
+    "answers": [
+      "Isengard",
+      "Minas Tirith",
+      "Fondcombe"
+    ]
+  },
+  {
+    "image": "argonath",
+    "difficulty": "moyen",
+    "question": "Sur quel fleuve se trouve l'Argonath ?",
+    "response": "L'Anduin",
+    "answers": [
+      "L'Anduin",
+      "Le Bruinen",
+      "Le Mitheithel"
+    ]
+  },
+  {
+    "image": "manwe",
+    "difficulty": "difficile",
+    "question": "Quel Valar servent les aigles ?",
+    "response": "Manwë",
+    "answers": [
+      "Manwë",
+      "Oromë",
+      "Aulë",
+      "Yavanna"
+    ]
+  }
+]

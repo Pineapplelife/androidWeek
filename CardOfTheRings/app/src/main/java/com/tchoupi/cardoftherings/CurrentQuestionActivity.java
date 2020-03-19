@@ -1,9 +1,12 @@
 package com.tchoupi.cardoftherings;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,28 +16,28 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+
 
 public class CurrentQuestionActivity extends AppCompatActivity {
 
+    private int questionId;
+    private ArrayList<Question> questionArrayList;
     /**
      * Function onCreate, called first, which initialize the activity
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_question);
 
-        // Creation of the Current Question
-        ArrayList<String> sentencesTest = new ArrayList<>();
-        sentencesTest.add("Albus Dumbledore");
-        sentencesTest.add("Gandalf");
-        sentencesTest.add("Gondulf");
-        sentencesTest.add("La réponse D");
-        final Question questionTest = new Question("Comment s'appelle ce personnage ? la réponse vous étonnera certainement eheh", R.drawable.gandalf, sentencesTest, "Gandalf", "facile");
+        Intent currentIntent = getIntent();
+        final ArrayList<Question> questionArrayList = currentIntent.getParcelableArrayListExtra("questions");
+        questionId = currentIntent.getIntExtra("questionId", 0);
+
+        final Question currentQuestion = questionArrayList.get(questionId);
 
         // Recuperation of the elements from the layout
         ImageView questionImageView = findViewById(R.id.questionImageView);
@@ -43,20 +46,21 @@ public class CurrentQuestionActivity extends AppCompatActivity {
         final TextView correctResponseTextView = findViewById(R.id.correctResponseTextView);
         final TextView errorTextView = findViewById(R.id.errorTextView);
         final RadioGroup responseRadioGroup = findViewById(R.id.responseRadioGroup);
-        Button validButton = findViewById(R.id.validButton);
+        final Button validButton = findViewById(R.id.validButton);
 
         // Set the Current Object Question in every fields of the layout
-        questionImageView.setImageResource(questionTest.getImage());
-        questionTextView.setText(questionTest.getQuestion());
-        for (int i = 0; i < questionTest.getSentences().size(); i++) {
-            String currentSentence = questionTest.getSentences().get(i);
+        questionImageView.setImageResource(currentQuestion.getImage());
+        questionTextView.setText(currentQuestion.getQuestion());
+        for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
+            String currentAnswer = currentQuestion.getAnswers().get(i);
             RadioButton sentenceRadioButton = new RadioButton(this);
-            sentenceRadioButton.setText(currentSentence);
+            sentenceRadioButton.setText(currentAnswer);
             responseRadioGroup.addView(sentenceRadioButton);
         }
 
 
         validButton.setText("Valider la réponse");
+        final Question finalQuestionTest = currentQuestion;
         validButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,17 +68,41 @@ public class CurrentQuestionActivity extends AppCompatActivity {
                 RadioButton checkedRadioButton = responseRadioGroup.findViewById(responseRadioGroup.getCheckedRadioButtonId());
                 if (checkedRadioButton.getText() != null) {
                     errorTextView.setText("");
-                    if(checkedRadioButton.getText().equals(questionTest.getResponse())){
+                    if (checkedRadioButton.getText().equals(finalQuestionTest.getResponse())) {
                         validResponseTextView.setText("Bonne réponse !");
                         validResponseTextView.setTextColor(Color.GREEN);
                         correctResponseTextView.setText("");
                     } else {
                         validResponseTextView.setText("Mauvaise réponse !");
                         validResponseTextView.setTextColor(Color.RED);
-                        correctResponseTextView.setText("La réponse était : " + questionTest.getResponse());
+                        correctResponseTextView.setText("La réponse était : " + finalQuestionTest.getResponse());
                     }
-                }
-                else {
+
+                    if(questionId + 1 == questionArrayList.size()){
+                        validButton.setText("Résultats");
+                        validButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(CurrentQuestionActivity.this, CurrentQuestionActivity.class);
+                                intent.putExtra("questions", questionArrayList);
+                                intent.putExtra("questionId", questionId + 1);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    else {
+                        validButton.setText("Question suivante");
+                        validButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(CurrentQuestionActivity.this, CurrentQuestionActivity.class);
+                                intent.putExtra("questions", questionArrayList);
+                                intent.putExtra("questionId", questionId + 1);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                } else {
                     errorTextView.setText("Veuillez sélectionner une réponse.");
                 }
             }
