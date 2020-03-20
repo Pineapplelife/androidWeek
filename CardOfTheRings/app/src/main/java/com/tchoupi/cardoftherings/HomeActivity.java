@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -108,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
                 intent.putExtra("appName", "The Lord of the Quizz");
-                intent.putExtra("version", "V1.0.0");
+                intent.putExtra("version", "V " + BuildConfig.VERSION_NAME);
                 intent.putExtra("author", "Made with ♥ by TCHOUPI");
                 startActivity(intent);
             }
@@ -153,6 +154,7 @@ public class HomeActivity extends AppCompatActivity {
                                 jsonObject.getString("difficulty")
                         ));
                     }
+                    Collections.shuffle(questions);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

@@ -48,7 +48,7 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ResultActivity.this, AboutActivity.class);
                 intent.putExtra("appName", "The Lord of the Quizz");
-                intent.putExtra("version", "V1.0.0");
+                intent.putExtra("version", "V " + BuildConfig.VERSION_NAME);
                 intent.putExtra("author", "Made with ♥ by TCHOUPI");
                 startActivity(intent);
             }

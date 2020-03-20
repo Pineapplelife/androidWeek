@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class CurrentQuestionActivity extends AppCompatActivity {
@@ -55,8 +56,11 @@ public class CurrentQuestionActivity extends AppCompatActivity {
         // Set the Current Object Question in every fields of the layout
         questionImageView.setImageResource(currentQuestion.getImage());
         questionTextView.setText(currentQuestion.getQuestion());
-        for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
-            String currentAnswer = currentQuestion.getAnswers().get(i);
+
+        ArrayList<String> answerList = currentQuestion.getAnswers();
+        Collections.shuffle(answerList);
+        for (int i = 0; i < answerList.size(); i++) {
+            String currentAnswer = answerList.get(i);
             RadioButton sentenceRadioButton = new RadioButton(this);
             sentenceRadioButton.setText(currentAnswer);
             responseRadioGroup.addView(sentenceRadioButton);
