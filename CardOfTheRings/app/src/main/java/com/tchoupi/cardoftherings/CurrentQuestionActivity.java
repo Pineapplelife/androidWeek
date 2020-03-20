@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +22,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
 
     private int questionId;
     private ArrayList<Question> questionArrayList;
+    private int userScore;
     /**
      * Function onCreate, called first, which initialize the activity
      */
@@ -36,6 +36,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
         Intent currentIntent = getIntent();
         final ArrayList<Question> questionArrayList = currentIntent.getParcelableArrayListExtra("questions");
         questionId = currentIntent.getIntExtra("questionId", 0);
+        userScore = currentIntent.getIntExtra("userScore", 0);
 
         final Question currentQuestion = questionArrayList.get(questionId);
 
@@ -45,8 +46,11 @@ public class CurrentQuestionActivity extends AppCompatActivity {
         final TextView validResponseTextView = findViewById(R.id.validResponseTextView);
         final TextView correctResponseTextView = findViewById(R.id.correctResponseTextView);
         final TextView errorTextView = findViewById(R.id.errorTextView);
+        final TextView currentIdTextView = findViewById(R.id.currentIdTextView);
         final RadioGroup responseRadioGroup = findViewById(R.id.responseRadioGroup);
         final Button validButton = findViewById(R.id.validButton);
+
+        currentIdTextView.setText((questionId + 1) + " / " + questionArrayList.size());
 
         // Set the Current Object Question in every fields of the layout
         questionImageView.setImageResource(currentQuestion.getImage());
@@ -60,7 +64,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
 
 
         validButton.setText("Valider la réponse");
-        final Question finalQuestionTest = currentQuestion;
+        final Question finalCurrentQuestion = currentQuestion;
         validButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,14 +72,15 @@ public class CurrentQuestionActivity extends AppCompatActivity {
                 RadioButton checkedRadioButton = responseRadioGroup.findViewById(responseRadioGroup.getCheckedRadioButtonId());
                 if (checkedRadioButton.getText() != null) {
                     errorTextView.setText("");
-                    if (checkedRadioButton.getText().equals(finalQuestionTest.getResponse())) {
+                    if (checkedRadioButton.getText().equals(finalCurrentQuestion.getResponse())) {
                         validResponseTextView.setText("Bonne réponse !");
                         validResponseTextView.setTextColor(Color.GREEN);
                         correctResponseTextView.setText("");
+                        userScore += 1;
                     } else {
                         validResponseTextView.setText("Mauvaise réponse !");
                         validResponseTextView.setTextColor(Color.RED);
-                        correctResponseTextView.setText("La réponse était : " + finalQuestionTest.getResponse());
+                        correctResponseTextView.setText("La réponse était : " + finalCurrentQuestion.getResponse());
                     }
 
                     if(questionId + 1 == questionArrayList.size()){
@@ -83,9 +88,10 @@ public class CurrentQuestionActivity extends AppCompatActivity {
                         validButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(CurrentQuestionActivity.this, CurrentQuestionActivity.class);
-                                intent.putExtra("questions", questionArrayList);
-                                intent.putExtra("questionId", questionId + 1);
+                                Intent intent = new Intent(CurrentQuestionActivity.this, ResultActivity.class);
+                                intent.putExtra("questionTotal", questionArrayList.size());
+                                intent.putExtra("userScore", userScore);
+                                intent.putExtra("difficulty", finalCurrentQuestion.getDifficulty());
                                 startActivity(intent);
                             }
                         });
@@ -98,6 +104,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
                                 Intent intent = new Intent(CurrentQuestionActivity.this, CurrentQuestionActivity.class);
                                 intent.putExtra("questions", questionArrayList);
                                 intent.putExtra("questionId", questionId + 1);
+                                intent.putExtra("userScore", userScore);
                                 startActivity(intent);
                             }
                         });

@@ -106,7 +106,11 @@ public class HomeActivity extends AppCompatActivity {
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO about activity + intent
+                Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+                intent.putExtra("appName", "The Lord of the Quizz");
+                intent.putExtra("version", "V1.0.0");
+                intent.putExtra("author", "Made with ♥ by TCHOUPI");
+                startActivity(intent);
             }
         });
     }

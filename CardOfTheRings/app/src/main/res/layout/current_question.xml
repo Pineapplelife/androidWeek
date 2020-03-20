@@ -87,4 +87,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="La réponse était ..." />
+
+    <TextView
+        android:id="@+id/currentIdTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/validButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/validButton"
+        app:layout_constraintTop_toTopOf="@+id/validButton"
+        tools:text="1 / 5 " />
 </androidx.constraintlayout.widget.ConstraintLayout>
