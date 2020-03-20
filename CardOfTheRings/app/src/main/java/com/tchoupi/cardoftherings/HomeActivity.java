@@ -53,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO : display difficulty dialog
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(HomeActivity.this);
                 builderSingle.setTitle("Sélectionne une difficulté :");
 
@@ -159,10 +158,11 @@ public class HomeActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (difficulty == "all") {
-                                //TODO liste des questions
+                                Intent intent = new Intent(HomeActivity.this, QuestionListActivity.class);
+                                intent.putExtra("questions", questions);
+                                startActivity(intent);
                             } else {
                                 Intent intent = new Intent(HomeActivity.this, CurrentQuestionActivity.class);
-                                Log.i("HomeActivity", String.valueOf(questions));
                                 intent.putExtra("questions", questions);
                                 intent.putExtra("questionId", 0);
                                 startActivity(intent);

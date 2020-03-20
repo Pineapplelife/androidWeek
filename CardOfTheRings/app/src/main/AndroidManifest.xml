@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tchoupi.cardoftherings">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,9 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ResultActivity"></activity>
-        <activity android:name=".AboutActivity" />
+        android:usesCleartextTraffic="true"
+        >
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".CurrentQuestionActivity" />
+        <activity android:name=".QuestionListActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".SingleQuestionActivity" />
     </application>
 
 </manifest>
