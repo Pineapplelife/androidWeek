@@ -69,6 +69,20 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         holder.question.setText(question.getQuestion());
 
         ArrayList<String> answers = question.getAnswers();
+        // ROBIN: Ici ta méthode est un peu bourrine, tu affectes à chaque fois
+        // au TextView alors que tu vas le modifier au prochaine tour de boucle.
+        // De plus, les String sont immutables en Java => Chaque fois que tu fais
+        // une str = str + "toto", tu génères une nouvelle String.
+        // voilà comment tu peux faire plus efficacement :
+//        StringBuilder sb = new StringBuilder();
+//        String separator = "";
+//        for (String answer : answers) {
+//            sb.append(separator);
+//            sb.append(answer);
+//            separator = ", ";
+//        }
+//        holder.answers.setText(sb.toString());
+
         for(int i = 0; i < answers.size(); i++){
             if(holder.answers.getText().length() < 1){
                 holder.answers.setText(answers.get(i));

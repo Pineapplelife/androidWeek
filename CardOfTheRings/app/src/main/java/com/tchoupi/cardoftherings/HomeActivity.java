@@ -50,6 +50,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // ROBIN: Tout ce qui est dans le ClickListener aurait mérité
+        // d'être dans une fonction à part pour alléger un peu onCreate
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +88,9 @@ public class HomeActivity extends AppCompatActivity {
                                     case "Aventurier aguerri":
                                         difficulty = "moyen";
                                         break;
+                                    // ROBIN: Les questions sur la géographie ici...
+                                    // espèce de p'tit b*tard :-D !!
+                                    // Je me suis loupé sur le lac, sinon j'étais bon, ouf!!
                                     case "Sueurs et Larmes":
                                         difficulty = "difficile";
                                         break;
