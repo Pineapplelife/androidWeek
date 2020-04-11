@@ -16,6 +16,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// ROBIN: AAAAH tristesse ! Tu as du dupliqué beaucoup
+// de ta logique pour cette Activity. Tu aurais pu t'en sortir
+// avec une seule Activity en disant la chose suivante :
+// tu donne une List de 1 question a ton activity de quiz.
+// Du coup, l'Activity n'y voit que du feu :)
 public class SingleQuestionActivity extends AppCompatActivity {
 
     private int userScore;
