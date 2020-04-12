@@ -24,6 +24,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
     private int questionId;
     private ArrayList<Question> questionArrayList;
     private int userScore;
+    private Boolean singleQuestion;
     /**
      * Function onCreate, called first, which initialize the activity
      */
@@ -38,6 +39,7 @@ public class CurrentQuestionActivity extends AppCompatActivity {
         final ArrayList<Question> questionArrayList = currentIntent.getParcelableArrayListExtra("questions");
         questionId = currentIntent.getIntExtra("questionId", 0);
         userScore = currentIntent.getIntExtra("userScore", 0);
+        singleQuestion = currentIntent.getBooleanExtra("singleQuestion", false);
 
         final Question currentQuestion = questionArrayList.get(questionId);
 
@@ -74,11 +76,17 @@ public class CurrentQuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // This will get the radioButton in the radioGroup that is checked
                 RadioButton checkedRadioButton = responseRadioGroup.findViewById(responseRadioGroup.getCheckedRadioButtonId());
+
+
                 // ROBIN: Gros bug qui attend ici ! Si jamais l'utilisateur
                  // n'a rien sélectionné, radioId renvoie -1.
                 // Par conséquent, le findviewById renvoie null /!\
                  // Il faut absolument vérifier le résultat de getCheckedRadioButtonId
-                if (checkedRadioButton.getText() != null) {
+
+                // DONE
+
+
+                if (checkedRadioButton != null) {
                     errorTextView.setText("");
                     if (checkedRadioButton.getText().equals(finalCurrentQuestion.getResponse())) {
                         validResponseTextView.setText("Bonne réponse !");
@@ -92,20 +100,34 @@ public class CurrentQuestionActivity extends AppCompatActivity {
                     }
 
                     if(questionId + 1 == questionArrayList.size()){
-                        validButton.setText("Résultats");
-                        validButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(CurrentQuestionActivity.this, ResultActivity.class);
-                                intent.putExtra("questionTotal", questionArrayList.size());
-                                intent.putExtra("userScore", userScore);
-                                intent.putExtra("difficulty", finalCurrentQuestion.getDifficulty());
-                                startActivity(intent);
-                            }
-                        });
+                        if(singleQuestion == false){
+                            validButton.setText("Résultats");
+                            validButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(CurrentQuestionActivity.this, ResultActivity.class);
+                                    intent.putExtra("questionTotal", questionArrayList.size());
+                                    intent.putExtra("userScore", userScore);
+                                    intent.putExtra("difficulty", finalCurrentQuestion.getDifficulty());
+                                    intent.putExtra("singleQuestion", singleQuestion);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                        else {
+                            validButton.setText("Retour à la liste");
+                            validButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    finish();
+                                }
+                            });
+                        }
+
                     }
                     else {
                         validButton.setText("Question suivante");
+                        //TODO
                         // ROBIN: Malin de t'en sortir comme ça, mais ce n'est pas très "scalable"
                         // comme solution. A chaque fois tu réaffect un nouveau ClickListener
                         // a ton bouton.

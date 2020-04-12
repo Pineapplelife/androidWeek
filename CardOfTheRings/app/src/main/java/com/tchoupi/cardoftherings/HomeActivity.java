@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //TODO
         // ROBIN: Tout ce qui est dans le ClickListener aurait mérité
         // d'être dans une fonction à part pour alléger un peu onCreate
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +171,7 @@ public class HomeActivity extends AppCompatActivity {
                                 Intent intent = new Intent(HomeActivity.this, CurrentQuestionActivity.class);
                                 intent.putExtra("questions", questions);
                                 intent.putExtra("questionId", 0);
+                                intent.putExtra("singleQuestion", false);
                                 startActivity(intent);
                             }
                         }

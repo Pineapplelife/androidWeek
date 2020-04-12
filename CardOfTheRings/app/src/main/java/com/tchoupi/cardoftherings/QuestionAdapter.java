@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> implements View.OnClickListener {
 
@@ -27,8 +29,12 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             case R.id.rootItem:
                 Context context = v.getContext();
                 Question question = (Question) v.getTag();
-                Intent intent = new Intent(context, SingleQuestionActivity.class);
-                intent.putExtra("question", question);
+                ArrayList<Question> questionList = new ArrayList<>();
+                questionList.add(question);
+                Intent intent = new Intent(context, CurrentQuestionActivity.class);
+                intent.putExtra("questions", questionList);
+                intent.putExtra("questionId", 0);
+                intent.putExtra("singleQuestion", true);
                 context.startActivity(intent);
                 break;
         }
@@ -73,24 +79,18 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         // au TextView alors que tu vas le modifier au prochaine tour de boucle.
         // De plus, les String sont immutables en Java => Chaque fois que tu fais
         // une str = str + "toto", tu génères une nouvelle String.
-        // voilà comment tu peux faire plus efficacement :
-//        StringBuilder sb = new StringBuilder();
-//        String separator = "";
-//        for (String answer : answers) {
-//            sb.append(separator);
-//            sb.append(answer);
-//            separator = ", ";
-//        }
-//        holder.answers.setText(sb.toString());
 
-        for(int i = 0; i < answers.size(); i++){
-            if(holder.answers.getText().length() < 1){
-                holder.answers.setText(answers.get(i));
-            }
-            else {
-                holder.answers.setText(holder.answers.getText() + ", " + answers.get(i));
-            }
+        //DONE
+
+        StringBuilder sb = new StringBuilder();
+        String separator = "";
+        for (String answer : answers) {
+            sb.append(separator);
+            sb.append(answer);
+            separator = ", ";
         }
+        holder.answers.setText(sb.toString());
+
 
         switch (question.getDifficulty()){
             case "facile":

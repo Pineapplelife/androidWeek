@@ -25,7 +25,6 @@
         <activity android:name=".QuestionListActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".SingleQuestionActivity" />
     </application>
 
 </manifest>
